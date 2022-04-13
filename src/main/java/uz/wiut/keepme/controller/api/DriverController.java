@@ -1,6 +1,7 @@
 package uz.wiut.keepme.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,8 @@ public class DriverController {
             message.setName_en("Provided ID is empty");
 
             response.setMessage(message);
+
+            return response;
         }
 
         ResponseDto service = driverService.getById(dto.getId());
@@ -67,12 +70,15 @@ public class DriverController {
             message.setName_en("Cannot find an entity by provided ID");
 
             response.setMessage(message);
+
+            return response;
         }
 
         return driverService.edit(dto);
     }
 
     @DeleteMapping("/remove")
+    @ResponseBody
     public ResponseDto remove(@RequestParam(value = "id", required = true) Integer id) {
 
         ResponseDto response = null;

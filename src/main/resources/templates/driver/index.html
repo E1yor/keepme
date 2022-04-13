@@ -83,7 +83,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="name" class="col-form-label">Recipient:</label>
+                                <label for="name" class="col-form-label">Name:</label>
                                 <input type="text" class="form-control" id="name">
                             </div>
                             <div class="mb-3">
@@ -119,7 +119,9 @@
             var success;
             var modal_title;
             var action;
+            var entity_id;
 
+            // get by id
             var get_by_id = (id) => {
                 var request = $.ajax({
                     url: "/api/driver/get/byid",
@@ -137,6 +139,7 @@
                 });
             };
 
+            // remove by id
             var remove_by_id = (id) => {
                 var request = $.ajax({
                     url: "/api/driver/remove",
@@ -155,6 +158,7 @@
                 });
             };
 
+            // get all
             var get_all = () => {
                 var request = $.ajax({
                     url: "/api/driver/get/all",
@@ -170,6 +174,67 @@
                 request.fail(function(jqXHR, textStatus) {
                     console.log(jqXHR, textStatus);
                 });
+            };
+
+            // add
+            var add = () => {
+
+                var request = $.ajax({
+                    url: "/api/driver/add",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "name": $('#name').val(),
+                        "phone": $('#phone').val(),
+                        "email": $('#email').val(),
+                        "address": $('#address').val(),
+                        "notes": $('#notes').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+
+                    async: false
+                });
+
+                request.done(function(data) {
+                    success = data.success;
+                    result = data.data;
+                });
+
+                request.fail(function(jqXHR, textStatus) {
+                    console.log(jqXHR, textStatus);
+                });
+
+            };
+
+            // edit
+            var edit = (id) => {
+                console.log(id);
+                var request = $.ajax({
+                    url: "/api/driver/edit",
+                    type: "PUT",
+                    data: JSON.stringify({
+                        "id": id,
+                        "name": $('#name').val(),
+                        "phone": $('#phone').val(),
+                        "email": $('#email').val(),
+                        "address": $('#address').val(),
+                        "notes": $('#notes').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+
+                    async: false
+                });
+
+                request.done(function(data) {
+                    success = data.success;
+                    result = data.data;
+                });
+
+                request.fail(function(jqXHR, textStatus) {
+                    console.log(jqXHR, textStatus);
+                });
+
             };
 
             var populate_data = () => {
@@ -241,8 +306,8 @@
                 action = 'edit';
                 $('#driver-modal-label').text('Edit');
 
-                var id = $(this).data('id');
-                get_by_id(id);
+                entity_id = $(this).data('id');
+                get_by_id(entity_id);
 
                 populate_form(result);
 
@@ -264,10 +329,20 @@
 
             });
 
-            $('.save').on('click', ()=>{
+            $('.save').on('click', () => {
 
                 // check which action caused an event
-
+                if(action == 'add'){
+                    add();
+                    if(success)
+                        alert("Successfully has been added")
+                    window.location.reload();
+                }else if(action == 'edit'){
+                    edit(entity_id);
+                    if(success)
+                        alert("Successfully has been edited")
+                    window.location.reload();
+                }
 
 
             });
