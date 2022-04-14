@@ -5,17 +5,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UnitDto {
-    private Integer id;
-    private String brand;
-    private String model;
-    private String fuelType;
-    private Integer year;
-    private String licenseNumber;
-    private String eldNumber;
-    private String notes;
+    Integer
+            id;
+    String
+            brand,
+            model,
+            fuelType;
+    Integer
+            year;
+    String
+            licenseNumber,
+            eldNumber,
+            notes;
+    @Temporal(TemporalType.TIMESTAMP)
+    Date
+            created,
+            updated;
+    Integer
+            state;
 }

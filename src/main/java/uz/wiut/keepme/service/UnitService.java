@@ -10,5 +10,7 @@ import java.util.List;
 public interface UnitService {
     ResponseDto getAll();
     ResponseDto getById(Integer id);
-    UnitDto save(UnitDto dto) throws Exception;
+    ResponseDto add(UnitDto dto);
+    ResponseDto edit(UnitDto dto);
+    ResponseDto remove(Integer id);
 }

@@ -4,10 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,6 +16,7 @@ public class Load {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "broker_name")
@@ -38,5 +36,16 @@ public class Load {
 
     @Column(name = "notes")
     private String notes;
+
+    @Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
+    @Column(name = "updated")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updated;
+
+    @Column(name = "state")
+    private Integer state;
 
 }

@@ -91,6 +91,8 @@ public class DriverController {
             message.setName_en("Provided ID is empty");
 
             response.setMessage(message);
+
+            return response;
         }
 
         ResponseDto service = driverService.getById(id);
@@ -103,6 +105,8 @@ public class DriverController {
             message.setName_en("Cannot find an entity by provided ID");
 
             response.setMessage(message);
+
+            return response;
         }
 
         return driverService.remove(id);

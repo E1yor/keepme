@@ -5,15 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/web/driver")
-@RequestMapping("/web/driver")
-public class DriverController {
+@Controller("/web/load")
+@RequestMapping("/web/load")
+public class LoadController {
 
     @GetMapping(value={"", "/", "/index"})
     public String index(Model model){
 
-        model.addAttribute("active", "driver");
-        return "driver/index";
+        model.addAttribute("active", "load");
+        return "load/index";
     }
 
 }

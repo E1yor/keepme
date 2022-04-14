@@ -1,6 +1,7 @@
 package uz.wiut.keepme.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import uz.wiut.keepme.domain.Load;
 import uz.wiut.keepme.domain.Unit;
 import uz.wiut.keepme.dto.LoadDto;
@@ -12,9 +13,15 @@ import java.util.List;
 public interface LoadMapper extends MapperInterface<LoadDto, Load>{
 
     @Override
+    @Mapping(source = "created", target = "created")
+    @Mapping(source = "updated", target = "updated")
+    @Mapping(source = "state", target = "state")
     Load toEntity(LoadDto dto);
 
     @Override
+    @Mapping(source = "created", target = "created")
+    @Mapping(source = "updated", target = "updated")
+    @Mapping(source = "state", target = "state")
     LoadDto toDto(Load entity);
 
     @Override

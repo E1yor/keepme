@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uz.wiut.keepme.dto.NamingDto;
 import uz.wiut.keepme.dto.ResponseDto;
 import uz.wiut.keepme.dto.UnitDto;
+import uz.wiut.keepme.helper.StringHelper;
 import uz.wiut.keepme.service.UnitService;
 
 import java.util.List;
@@ -17,39 +18,94 @@ public class UnitController {
     UnitService unitService;
 
     @GetMapping("/get/all")
-    public ResponseDto get(){
+    @ResponseBody
+    public ResponseDto getAll(){
 
         return unitService.getAll();
     }
 
     @GetMapping("/get/byid")
+    @ResponseBody
     public ResponseDto getById(@RequestParam(value = "id", required = true) Integer id){
 
         return unitService.getById(id);
     }
 
-    @PostMapping("/save")
-    public ResponseDto save(
-        @RequestBody UnitDto dto
-    ){
-        ResponseDto response = new ResponseDto();
+    @PostMapping("/add")
+    @ResponseBody
+    public ResponseDto add(@RequestBody UnitDto dto){
 
-        try {
-            dto = unitService.save(dto);
-            response.setData(dto);
-            response.setSuccess(Boolean.TRUE);
-        } catch (Exception ex){
-            NamingDto naming = new NamingDto();
+        return unitService.add(dto);
+    }
 
-            naming.setName_en(ex.getMessage());
-            naming.setName_ru(ex.getMessage());
-            naming.setName_uz_cyrl(ex.getMessage());
-            naming.setName_uz_latn(ex.getMessage());
+    @PutMapping("/edit")
+    @ResponseBody
+    public ResponseDto edit(@RequestBody UnitDto dto){
 
-            response.setMessage(naming);
+        ResponseDto response = null;
+
+        if (StringHelper.get(dto.getId()) == null){
+            response = new ResponseDto();
+            response.setSuccess(Boolean.FALSE);
+
+            NamingDto message = new NamingDto();
+            message.setName_en("Provided ID is empty");
+
+            response.setMessage(message);
+
+            return response;
         }
 
-        return response;
+        ResponseDto service = unitService.getById(dto.getId());
+
+        if(service == null || service.getData() == null){
+            response = new ResponseDto();
+            response.setSuccess(Boolean.FALSE);
+
+            NamingDto message = new NamingDto();
+            message.setName_en("Cannot find an entity by provided ID");
+
+            response.setMessage(message);
+
+            return response;
+        }
+
+        return unitService.edit(dto);
+    }
+
+    @DeleteMapping("/remove")
+    @ResponseBody
+    public ResponseDto remove(@RequestParam(value = "id", required = true) Integer id) {
+
+        ResponseDto response = null;
+
+        if (StringHelper.get(id) == null){
+            response = new ResponseDto();
+            response.setSuccess(Boolean.FALSE);
+
+            NamingDto message = new NamingDto();
+            message.setName_en("Provided ID is empty");
+
+            response.setMessage(message);
+
+            return response;
+        }
+
+        ResponseDto service = unitService.getById(id);
+
+        if(service == null || service.getData() == null){
+            response = new ResponseDto();
+            response.setSuccess(Boolean.FALSE);
+
+            NamingDto message = new NamingDto();
+            message.setName_en("Cannot find an entity by provided ID");
+
+            response.setMessage(message);
+
+            return response;
+        }
+
+        return unitService.remove(id);
     }
 
 }
