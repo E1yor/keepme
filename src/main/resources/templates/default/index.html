@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:include="fragments :: head"></head>
+    <body>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container">
+
+
+
+                <div class="container px-4 py-5" id="icon-grid">
+                    <h1 class="pb-2 border-bottom">Company information</h1>
+                    <p class="lead">This is very important company information for logistics app:</p>
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-bank text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">Legal name:</h4>
+                                <p>Some Legal name</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-123 text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">MC</h4>
+                                <p>Some MC</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-truck text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">US DOT</h4>
+                                <p>Some US DOT</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-filetype-docx text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">Carrier pack:</h4>
+                                <a href="#">Some document</a>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-telephone-inbound text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">Phone number:</h4>
+                                <p>Some phone number</p>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-start">
+                            <i class="bi-mailbox text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
+                            <div>
+                                <h4 class="fw-bold mb-0">Mail address:</h4>
+                                <p>Some mail address</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </main>
+
+    </body>
+</html>

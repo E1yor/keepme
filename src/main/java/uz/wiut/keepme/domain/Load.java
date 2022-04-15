@@ -19,11 +19,20 @@ public class Load {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "reference_number")
+    private String referenceNumber;
+
     @Column(name = "broker_name")
     private String brokerName;
 
     @Column(name = "origin")
     private String origin;
+
+    @Column(name = "destination")
+    private String destination;
+
+    @Column(name = "miles")
+    private Double miles;
 
     @Column(name = "pickup_time")
     private Date pickupTime;

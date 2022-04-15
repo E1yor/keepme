@@ -16,8 +16,12 @@ public class LoadDto {
     Integer
             id;
     String
+            referenceNumber,
             brokerName,
-            origin;
+            origin,
+            destination;
+    Double
+            miles;
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     Date

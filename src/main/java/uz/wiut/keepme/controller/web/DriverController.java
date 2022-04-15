@@ -13,6 +13,7 @@ public class DriverController {
     public String index(Model model){
 
         model.addAttribute("active", "driver");
+        model.addAttribute("page_title", "Driver");
         return "driver/index";
     }
 

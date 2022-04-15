@@ -29,7 +29,7 @@ public interface FleetRepository extends JpaRepository<Fleet, Integer> {
                 "left join driver t2 on t1.driver_id = t2.id " +
                 "left join load t3 on t1.load_id = t3.id " +
                 "left join unit t4 on t1.unit_id = t4.id " +
-                "left join status t5 on t1.unit_id = t5.id " +
+                "left join status t5 on t1.status_id = t5.id " +
                 "where t1.state <> :state",
         nativeQuery = true
     )
@@ -51,7 +51,7 @@ public interface FleetRepository extends JpaRepository<Fleet, Integer> {
                     "left join driver t2 on t1.driver_id = t2.id " +
                     "left join load t3 on t1.load_id = t3.id " +
                     "left join unit t4 on t1.unit_id = t4.id " +
-                    "left join status t5 on t1.unit_id = t5.id " +
+                    "left join status t5 on t1.status_id = t5.id " +
                     "where t1.state <> :state and t1.id = :id",
             nativeQuery = true
     )
