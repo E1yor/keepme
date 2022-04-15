@@ -20,6 +20,8 @@
 		<private.registry.url>registry.yt.uz:5443</private.registry.url>
 		<image.tag>1.0</image.tag>
 	</properties>
+	<packaging>war</packaging>
+
 	<dependencies>
 
 <!--		spring-->
@@ -94,34 +96,6 @@
 			<scope>compile</scope>
 		</dependency>
 
-
-<!--		<dependency>-->
-<!--			<groupId>org.apache.httpcomponents</groupId>-->
-<!--			<artifactId>httpclient</artifactId>-->
-<!--			<version>4.5.13</version>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>commons-io</groupId>-->
-<!--			<artifactId>commons-io</artifactId>-->
-<!--			<version>2.4</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.json</groupId>-->
-<!--			<artifactId>json</artifactId>-->
-<!--			<version>20160810</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.commons</groupId>-->
-<!--			<artifactId>commons-csv</artifactId>-->
-<!--			<version>1.8</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>com.networknt</groupId>-->
-<!--			<artifactId>json-schema-validator</artifactId>-->
-<!--			<version>1.0.42</version>-->
-<!--		</dependency>-->
-
 	</dependencies>
 
 	<build>
@@ -138,31 +112,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>com.spotify</groupId>-->
-<!--				<artifactId>dockerfile-maven-plugin</artifactId>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<id>default</id>-->
-<!--						<goals>-->
-<!--							<goal>build</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--					<execution>-->
-<!--						<id>tag-version</id>-->
-<!--						<goals>-->
-<!--							<goal>tag</goal>-->
-<!--							<goal>push</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--				<configuration>-->
-<!--					<repository>${private.registry.url}/${project.artifactId}</repository>-->
-<!--					<tag>${image.tag}</tag>-->
-<!--					<useMavenSettingsForAuth>false</useMavenSettingsForAuth>-->
-<!--					<skip>false</skip>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
 		</plugins>
 		<testResources>
 			<testResource>
