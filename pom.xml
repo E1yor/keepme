@@ -20,7 +20,7 @@
 		<private.registry.url>registry.yt.uz:5443</private.registry.url>
 		<image.tag>1.0</image.tag>
 	</properties>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<dependencies>
 
