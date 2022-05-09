@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS $JAR_OPTS -jar target/keepme-0.0.1-SNAPSHOT.jar
+worker: java -jar target/*.jar
