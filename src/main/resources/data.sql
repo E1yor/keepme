@@ -15,3 +15,13 @@ INSERT INTO "PUBLIC"."LOAD"("REFERENCE_NUMBER", "BROKER_NAME", "ORIGIN", "DESTIN
 INSERT INTO "PUBLIC"."FLEET"("DRIVER_ID", "LOAD_ID", "UNIT_ID", "STATUS_ID", "LOCATION", "ETA", "READY_TIME", "NOTES", "CREATED", "STATE")
         VALUES  (1, 1, 1, 1, 'some location', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'some notes', CURRENT_TIMESTAMP(), 0);
 
+INSERT INTO "PUBLIC"."COMPANY"("NAME", "MC", "US_DOT", "PHONE_NUMBER", "MAIL_ADDRESS", "CREATED", "STATE")
+        VALUES  ('some name 1', 'some mc 1', 'some us_dot 1', 'some phone_number 1', 'some mail_address 1', CURRENT_TIMESTAMP(), 0);
+INSERT INTO "PUBLIC"."COMPANY"("NAME", "MC", "US_DOT", "PHONE_NUMBER", "MAIL_ADDRESS", "CREATED", "STATE")
+        VALUES  ('some name 2', 'some mc 2', 'some us_dot 2', 'some phone_number 2', 'some mail_address 2', CURRENT_TIMESTAMP(), 0);
+
+INSERT INTO "PUBLIC"."USER"("COMPANY_ID", "USERNAME", "PASSWORD")
+        VALUES  (1, 'test 1', 'test 1');
+
+INSERT INTO "PUBLIC"."USER"("COMPANY_ID", "USERNAME", "PASSWORD")
+        VALUES  (2, 'test 2', 'test 2');

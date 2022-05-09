@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("user")
-@RequestMapping("/user")
+@RequestMapping("/web/user")
 public class UserController {
 
     @GetMapping(value={"/login"})

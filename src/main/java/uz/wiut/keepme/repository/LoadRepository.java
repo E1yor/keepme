@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface LoadRepository extends JpaRepository<Load, Integer> {
+    List<Load> findAllByReferenceNumberContainingAndStateNot(String search, Integer state);
     List<Load> findAllByStateNot(Integer state);
     Optional<Load> findByIdAndStateNot(Integer id, Integer state);
 }

@@ -8,6 +8,8 @@ import uz.wiut.keepme.dto.ResponseDto;
 import uz.wiut.keepme.helper.StringHelper;
 import uz.wiut.keepme.service.LoadService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/load")
 public class LoadController {
@@ -17,9 +19,13 @@ public class LoadController {
 
     @GetMapping("/get/all")
     @ResponseBody
-    public ResponseDto getAll(){
-
-        return loadService.getAll();
+    public ResponseDto getAll(
+        @RequestParam(value = "search", required = false) String search
+    ){
+        String search_criteria = StringHelper.get(search) == null ? null : search;
+        return loadService.getAll(
+            search_criteria
+        );
     }
 
     @GetMapping("/get/byid")

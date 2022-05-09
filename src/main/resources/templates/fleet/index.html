@@ -104,12 +104,21 @@
             var action;
             var entity_id;
 
+            // get token
+
+            var get_token = () => {
+                return JSON.parse(window.localStorage.getItem('token')).access_token;
+            };
+
             // get by id
             var get_by_id = (id) => {
                 var request = $.ajax({
                     url: "/api/fleet/get/byid",
                     type: "GET",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -128,6 +137,9 @@
                     url: "/api/fleet/remove",
                     type: "DELETE",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -143,10 +155,15 @@
 
             // get all drivers
             var get_all_drivers = () => {
+                console.log(get_token());
+
                 var request = $.ajax({
                     url: "/api/driver/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -165,6 +182,9 @@
                     url: "/api/load/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -183,6 +203,9 @@
                     url: "/api/unit/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -201,6 +224,9 @@
                     url: "/api/status/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -219,6 +245,9 @@
                     url: "/api/fleet/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -249,7 +278,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -283,7 +314,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 

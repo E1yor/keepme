@@ -95,12 +95,21 @@
             var action;
             var entity_id;
 
+            // get token
+
+            var get_token = () => {
+                return JSON.parse(window.localStorage.getItem('token')).access_token;
+            };
+
             // get by id
             var get_by_id = (id) => {
                 var request = $.ajax({
                     url: "/api/unit/get/byid",
                     type: "GET",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -119,6 +128,9 @@
                     url: "/api/unit/remove",
                     type: "DELETE",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -138,6 +150,9 @@
                     url: "/api/unit/get/all",
                     type: "GET",
                     data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -167,7 +182,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -200,7 +217,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 

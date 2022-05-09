@@ -12,8 +12,15 @@
                     <h2 id="default-container">Loads</h2>
 
                     <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input name="search" type="text" class="form-control" placeholder="Load #">
+                                <button class="btn btn-outline-secondary search" type="button">Search</button>
+                            </div>
+                        </div>
+
                         <div class="col d-flex flex-row-reverse bd-highlight">
-                            <button type="button" class="btn btn-success add" >Add</button>
+                            <button type="button" class="btn btn-success add">Add</button>
                         </div>
                     </div>
 
@@ -110,12 +117,21 @@
             var action;
             var entity_id;
 
+            // get token
+
+            var get_token = () => {
+                return JSON.parse(window.localStorage.getItem('token')).access_token;
+            };
+
             // get by id
             var get_by_id = (id) => {
                 var request = $.ajax({
                     url: "/api/load/get/byid",
                     type: "GET",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -136,6 +152,9 @@
                     url: "/api/load/remove",
                     type: "DELETE",
                     data: {id: id},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -156,7 +175,12 @@
                 var request = $.ajax({
                     url: "/api/load/get/all",
                     type: "GET",
-                    data: {},
+                    data: {
+                        "search": $("input[name='search']").val()
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -190,6 +214,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -225,6 +252,9 @@
                     }),
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
                     async: false
                 });
 
@@ -314,6 +344,10 @@
             }
 
             // button event listeners
+            $('.search').on('click', ()=>{
+                populate_data();
+            });
+
             $('.add').on('click', ()=>{
                 action = 'add';
                 $('#load-modal-label').text('Add');

@@ -20,21 +20,21 @@
                             <i class="bi-bank text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
                             <div>
                                 <h4 class="fw-bold mb-0">Legal name:</h4>
-                                <p>Some Legal name</p>
+                                <p th:text="${company.name}"></p>
                             </div>
                         </div>
                         <div class="col d-flex align-items-start">
                             <i class="bi-123 text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
                             <div>
                                 <h4 class="fw-bold mb-0">MC</h4>
-                                <p>Some MC</p>
+                                <p th:text="${company.mc}">Some MC</p>
                             </div>
                         </div>
                         <div class="col d-flex align-items-start">
                             <i class="bi-truck text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
                             <div>
                                 <h4 class="fw-bold mb-0">US DOT</h4>
-                                <p>Some US DOT</p>
+                                <p th:text="${company.usDot}">Some US DOT</p>
                             </div>
                         </div>
                         <div class="col d-flex align-items-start">
@@ -48,14 +48,14 @@
                             <i class="bi-telephone-inbound text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
                             <div>
                                 <h4 class="fw-bold mb-0">Phone number:</h4>
-                                <p>Some phone number</p>
+                                <p th:text="${company.phoneNumber}">Some phone number</p>
                             </div>
                         </div>
                         <div class="col d-flex align-items-start">
                             <i class="bi-mailbox text-muted flex-shrink-0 me-3" style="font-size: 1.75em;"></i>
                             <div>
                                 <h4 class="fw-bold mb-0">Mail address:</h4>
-                                <p>Some mail address</p>
+                                <p th:text="${company.mailAddress}">Some mail address</p>
                             </div>
                         </div>
                     </div>

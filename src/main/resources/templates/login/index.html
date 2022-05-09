@@ -61,23 +61,111 @@
     <body class="text-center">
 
         <main class="form-signin">
-            <form method="get" action="/index">
+            <form>
                 <h1 class="h3 mb-3 fw-normal">Keepme</h1>
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="username" placeholder="username">
+                    <input name="username" type="text" class="form-control" id="username" placeholder="username">
                     <label for="username">Username</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" placeholder="password">
+                    <input name="password" type="password" class="form-control" id="password" placeholder="password">
                     <label for="password">Password</label>
                 </div>
 
-                <button class="w-100 btn btn-lg btn-secondary" type="submit">Sign in</button>
+                <button class="w-100 btn btn-lg btn-secondary check">Sign in</button>
 
                 <p class="mt-5 mb-3 text-muted">All rights reserved &copy; 2017–2022</p>
             </form>
         </main>
 
     </body>
+
+    <script type="text/javascript">
+        $(function() {
+            var result;
+            var success;
+            var modal_title;
+            var action;
+            var entity_id;
+
+            // get token
+
+            var get_token = () => {
+                return JSON.parse(window.localStorage.getItem('token')).access_token;
+            };
+
+            // check user
+            var check = () => {
+                var request = $.ajax({
+                    url: "/api/auth/login",
+                    type: "POST",
+                    data: JSON.stringify({
+                        "username": $("input[name='username']").val(),
+                        "password": $("input[name='password']").val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+
+                    async: false
+                });
+
+                request.done(function(data) {
+
+                    window.localStorage.setItem('token', JSON.stringify(data));
+
+                    result = data.data;
+                    success = true;
+
+                    get_user();
+
+                });
+
+                request.fail(function(jqXHR, textStatus) {
+                    if(jqXHR.status != 200){
+                        alert(jqXHR.responseText)
+                    }
+                    success = false;
+                });
+            };
+
+            // get user
+            var get_user = () => {
+                var request = $.ajax({
+                    url: "/api/auth/logged/token",
+                    type: "GET",
+                    data: {
+                        "token": get_token()
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + get_token());
+                    },
+                    async: false
+                });
+
+                request.done(function(data) {
+
+                    location.href = "/index";
+
+                    result = data.data;
+                    success = true;
+                });
+
+                request.fail(function(jqXHR, textStatus) {
+                    if(jqXHR.status != 200){
+                        alert(jqXHR.responseText)
+                    }
+                    success = false;
+                });
+            };
+
+            // check user action
+            $(document).on('click', '.check', function(e) {
+                e.preventDefault();
+                check();
+            });
+
+        });
+    </script>
+
 </html>

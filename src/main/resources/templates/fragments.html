@@ -43,9 +43,57 @@
                         <li class="nav-item">
                             <a class='nav-link' th:classappend="${active == 'driver' ? 'active' : ''}" href="/web/driver">Drivers</a>
                         </li>
+
                     </ul>
+
+                    <a class="navbar-text nav-link mr-3 p-3 logout" style="color:white; cursor:pointer;">Logout</a>
+
                 </div>
+
             </div>
+
+            <script type="text/javascript">
+                $(function() {
+                    var result;
+                    var success;
+                    var modal_title;
+                    var action;
+                    var entity_id;
+
+                    // get token
+
+                    var get_token = () => {
+                        return JSON.parse(window.localStorage.getItem('token')).access_token;
+                    };
+
+                    // get by id
+                    var logout = () => {
+                        var request = $.ajax({
+                            url: "/api/auth/login/logout",
+                            type: "GET",
+                            data: {token: get_token()},
+                            async: false
+                        });
+
+                        request.done(function(data) {
+                            localStorage.removeItem('token');
+                            location.href = "/";
+                        });
+
+                        request.fail(function(jqXHR, textStatus) {
+                            console.log(jqXHR, textStatus);
+                        });
+                    };
+
+                    $('body').on('click', '.logout', function() {
+                        console.log(0)
+                        logout();
+                    });
+
+                });
+            </script>
+
         </nav>
     </body>
+
 </html>

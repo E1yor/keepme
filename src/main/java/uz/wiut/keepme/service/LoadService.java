@@ -7,7 +7,7 @@ import uz.wiut.keepme.dto.UnitDto;
 
 @Service
 public interface LoadService {
-    ResponseDto getAll();
+    ResponseDto getAll(String search);
     ResponseDto getById(Integer id);
     ResponseDto add(LoadDto dto);
     ResponseDto edit(LoadDto dto);

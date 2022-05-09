@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import uz.wiut.keepme.config.Constants;
 import uz.wiut.keepme.domain.Load;
 import uz.wiut.keepme.dto.*;
+import uz.wiut.keepme.helper.StringHelper;
 import uz.wiut.keepme.mapper.LoadMapper;
 import uz.wiut.keepme.repository.LoadRepository;
 
@@ -23,15 +24,22 @@ public class LoadServiceImpl implements LoadService {
     @Autowired
     LoadMapper loadMapper;
 
-
     @Override
-    public ResponseDto getAll() {
+    public ResponseDto getAll(String search) {
         ResponseDto response = null;
 
         try {
-            List<LoadDto> list = loadRepository.findAllByStateNot(Constants.STATUS_DELETED)
-                    .stream().map(loadMapper::toDto)
-                    .collect(Collectors.toList());
+            List<LoadDto> list;
+            if(StringHelper.get(search) != null){
+                list = loadRepository.findAllByReferenceNumberContainingAndStateNot(search, Constants.STATUS_DELETED)
+                        .stream().map(loadMapper::toDto)
+                        .collect(Collectors.toList());
+            } else {
+                list = loadRepository.findAllByStateNot(Constants.STATUS_DELETED)
+                        .stream().map(loadMapper::toDto)
+                        .collect(Collectors.toList());
+            }
+
             response = new ResponseDto();
             response.setSuccess(Boolean.TRUE);
             response.setData(list);
