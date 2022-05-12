@@ -16,7 +16,7 @@ INSERT INTO "PUBLIC"."FLEET"("DRIVER_ID", "LOAD_ID", "UNIT_ID", "STATUS_ID", "LO
         VALUES  (1, 1, 1, 1, 'some location', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'some notes', CURRENT_TIMESTAMP(), 0);
 
 INSERT INTO "PUBLIC"."COMPANY"("NAME", "MC", "US_DOT", "PHONE_NUMBER", "MAIL_ADDRESS", "CREATED", "STATE")
-        VALUES  ('some name 1', 'some mc 1', 'some us_dot 1', 'some phone_number 1', 'some mail_address 1', CURRENT_TIMESTAMP(), 0);
+        VALUES  ('Admiral US', '1119286', '3443954', '+1 (415) 392-3639', 'Admiralus2020@gmail.com', CURRENT_TIMESTAMP(), 0);
 INSERT INTO "PUBLIC"."COMPANY"("NAME", "MC", "US_DOT", "PHONE_NUMBER", "MAIL_ADDRESS", "CREATED", "STATE")
         VALUES  ('some name 2', 'some mc 2', 'some us_dot 2', 'some phone_number 2', 'some mail_address 2', CURRENT_TIMESTAMP(), 0);
 
