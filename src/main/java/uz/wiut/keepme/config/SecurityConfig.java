@@ -43,44 +43,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .headers().frameOptions().disable()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/api/company/**").authenticated()
-                .antMatchers("/api/driver/**").authenticated()
-                .antMatchers("/api/fleet/**").authenticated()
-                .antMatchers("/api/load/**").authenticated()
-                .antMatchers("/api/status/**").authenticated()
-                .antMatchers("/api/unit/**").authenticated()
+                    .antMatchers("/api/company/**").authenticated()
+                    .antMatchers("/api/driver/**").authenticated()
+                    .antMatchers("/api/fleet/**").authenticated()
+                    .antMatchers("/api/load/**").authenticated()
+                    .antMatchers("/api/status/**").authenticated()
+                    .antMatchers("/api/unit/**").authenticated()
 
-                .antMatchers("/web/fleet/**").permitAll()
-                .antMatchers("/web/unit/**").permitAll()
-                .antMatchers("/web/driver/**").permitAll()
-                .antMatchers("/web/load/**").permitAll()
-                .antMatchers("/index").permitAll()
+                    .antMatchers("/web/fleet/**").permitAll()
+                    .antMatchers("/web/unit/**").permitAll()
+                    .antMatchers("/web/driver/**").permitAll()
+                    .antMatchers("/web/load/**").permitAll()
+                    .antMatchers("/index").permitAll()
 
-                .antMatchers("/web/user/**").permitAll()
-                .antMatchers("/api/auth/**").permitAll()
+                    .antMatchers("/web/user/**").permitAll()
+                    .antMatchers("/api/auth/**").permitAll()
 
-                .antMatchers("/assets/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/",
-                        "/v2/api-docs",           // swagger
-                        "/webjars/**",            // swagger-ui webjars
-                        "/swagger-resources/**",  // swagger-ui resources
-                        "/configuration/**",      // swagger configuration
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/assets/**").permitAll()
+                    .antMatchers("/h2-console/**").permitAll()
+                    .antMatchers(
+                            HttpMethod.GET,
+                            "/",
+                            "/v2/api-docs",           // swagger
+                            "/webjars/**",            // swagger-ui webjars
+                            "/swagger-resources/**",  // swagger-ui resources
+                            "/configuration/**",      // swagger configuration
+                            "/*.html",
+                            "/favicon.ico",
+                            "/**/*.html",
+                            "/**/*.css",
+                            "/**/*.js"
+                    ).permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                    .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutUrl("/login/logout");
 
