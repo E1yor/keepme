@@ -12,7 +12,7 @@ INSERT INTO "PUBLIC"."STATUS"("NAME")
                ('NO RESPONSE'),
                ('READY NOW 1'),
                ('READY NOW 2'),
-               ('RESTING zZzZzZ...')
+               ('RESTING zZzZzZ...'),
                ('SHOPPING'),
                ('WILL LET US KNOW');
 
@@ -24,7 +24,7 @@ INSERT INTO "PUBLIC"."UNIT"("BRAND", "MODEL", "FUEL_TYPE", "YEAR", "LICENSE_NUMB
         VALUES  ('Volvo', 'VNL 860', 'GAS', 2018, 'LN12345', 'ELD12345', 'Gray', CURRENT_TIMESTAMP(), 0);
 
 INSERT INTO "PUBLIC"."LOAD"("REFERENCE_NUMBER", "BROKER_NAME", "ORIGIN", "DESTINATION", "MILES", "PICKUP_TIME", "DELIVERY_TIME", "RATE", "NOTES", "CREATED", "STATE")
-        VALUES  ('', 'JB HUNT', 'CA Pasadena', 'IL Whiting', 5.5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 1.5, 'some notes', CURRENT_TIMESTAMP(), 0);
+        VALUES  ('#123456', 'JB HUNT', 'CA Pasadena', 'IL Whiting', 5.5, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 1.5, 'some notes', CURRENT_TIMESTAMP(), 0);
 
 INSERT INTO "PUBLIC"."FLEET"("DRIVER_ID", "LOAD_ID", "UNIT_ID", "STATUS_ID", "LOCATION", "ETA", "READY_TIME", "NOTES", "CREATED", "STATE")
         VALUES  (1, 1, 1, 1, 'some location', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'some notes', CURRENT_TIMESTAMP(), 0);
